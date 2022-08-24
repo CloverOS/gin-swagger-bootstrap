@@ -2,7 +2,6 @@ package ginSwaggerBootstrap
 
 import (
 	"github.com/CloverOS/gin-swagger-bootstrap/bootstrap"
-	"github.com/CloverOS/swag-gin"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"path/filepath"
@@ -37,15 +36,23 @@ func WrapHandler() gin.HandlerFunc {
 			ctx.Header("Content-Type", "application/json; charset=utf-8")
 		}
 		switch path {
-		case "swagger.json":
-			doc, err := swag.ReadDoc("swagger")
+		case "group.json":
+			readFile, err := bootstrap.ReadFile(path)
 			if err != nil {
-				ctx.AbortWithStatus(http.StatusInternalServerError)
+				bootstrap.Handler.ServeHTTP(ctx.Writer, ctx.Request)
 				return
 			}
-			ctx.String(http.StatusOK, doc)
-		default:
+			ctx.String(200, string(readFile))
+		case "index.html":
 			readFile, err := bootstrap.ReadFile(path)
+			if err != nil {
+				bootstrap.Handler.ServeHTTP(ctx.Writer, ctx.Request)
+				return
+			}
+			ctx.String(200, string(readFile))
+		default:
+			tmp := strings.Replace(ctx.Request.URL.Path, "/swagger/", "", 1)
+			readFile, err := bootstrap.ReadFile(tmp)
 			if err != nil {
 				bootstrap.Handler.ServeHTTP(ctx.Writer, ctx.Request)
 				return
