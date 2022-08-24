@@ -1,4 +1,4 @@
-module gin-swagger-bootstrap
+module github.com/CloverOS/gin-swagger-bootstrap
 
 go 1.19
 
