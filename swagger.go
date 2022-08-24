@@ -1,7 +1,7 @@
 package ginSwaggerBootstrap
 
 import (
-	"gin-swagger-bootstrap/file"
+	"github.com/CloverOS/gin-swagger-bootstrap/file"
 	"github.com/CloverOS/swag-gin"
 	"github.com/gin-gonic/gin"
 	"net/http"
