@@ -1,7 +1,7 @@
 package ginSwaggerBootstrap
 
 import (
-	"github.com/CloverOS/gin-swagger-bootstrap/file"
+	"github.com/CloverOS/gin-swagger-bootstrap/bootstrap"
 	"github.com/CloverOS/swag-gin"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -45,9 +45,9 @@ func WrapHandler() gin.HandlerFunc {
 			}
 			ctx.String(http.StatusOK, doc)
 		default:
-			readFile, err := file.ReadFile(path)
+			readFile, err := bootstrap.ReadFile(path)
 			if err != nil {
-				file.Handler.ServeHTTP(ctx.Writer, ctx.Request)
+				bootstrap.Handler.ServeHTTP(ctx.Writer, ctx.Request)
 				return
 			}
 			ctx.String(200, string(readFile))
