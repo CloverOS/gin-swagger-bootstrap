@@ -1,0 +1,13 @@
+pkg: swaggerBootstrap
+
+dest: "./swagger-bootstrap"
+
+fmt: true
+
+spread: true
+
+custom:
+  - files:
+      - "./swagger-bootstrap/"
+
+    base: "swagger-bootstrap/"
