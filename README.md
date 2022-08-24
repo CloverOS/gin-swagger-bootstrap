@@ -10,3 +10,6 @@ go get -u https://github.com/CloverOS/gin-swagger-bootstrap
 ```go
 r.GET("/swagger/*any", ginSwaggerBootstrap.WrapHandler())
 ```
+
+该项目仅做前端ui的增强替换，不做其他修改
+具体的文档请参考 [gin-swagger](https://github.com/swaggo/gin-swagger)
